@@ -667,7 +667,7 @@ if (contactForm && formStatus) {
         const data = Object.fromEntries(formData.entries());
         
         try {
-            const response = await fetch('/form-handler', {
+            const response = await fetch('/send.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
