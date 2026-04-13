@@ -646,9 +646,13 @@ document.querySelectorAll('.project-image-wrapper').forEach(wrapper => {
     });
 });
 
-// 12. Contact Form Submission with Telegram Integration
+// 12. Contact Form Submission (Direct to Telegram API - Purely Static)
 const contactForm = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
+
+// ⚠️ WARNING: Hardcoding tokens in frontend is insecure but required for static hosting
+const TELEGRAM_BOT_TOKEN = '8675223848:AAF4XnU1lrQ_1Xi3WfVfqA4maCtPvksg3M4';
+const TELEGRAM_CHAT_IDS = ['861139664', '738163931'];
 
 if (contactForm && formStatus) {
     contactForm.addEventListener('submit', async (e) => {
@@ -666,32 +670,48 @@ if (contactForm && formStatus) {
         const formData = new FormData(contactForm);
         const data = Object.fromEntries(formData.entries());
         
+        const text = `🚀 Новая заявка с сайта beld.web!\n\n` +
+                     `Имя: ${data.name}\n` +
+                     `Контакты: ${data.email}\n` +
+                     `Сообщение: ${data.message || 'Без сообщения'}`;
+        
         try {
-            const response = await fetch('/send.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
+            // Send to multiple recipients directly from browser
+            const sendPromises = TELEGRAM_CHAT_IDS.map(chatId => 
+                fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: text,
+                        parse_mode: 'HTML'
+                    })
+                }).then(res => res.json())
+            );
             
-            const result = await response.json();
+            const results = await Promise.all(sendPromises);
+            const allOk = results.every(res => res.ok);
             
-            if (response.ok) {
+            if (allOk) {
                 formStatus.innerText = '✨ Спасибо! Ваша заявка успешно отправлена.';
                 formStatus.style.color = '#00ffaa'; // Success green
                 contactForm.reset();
                 
+                if (typeof lenis !== 'undefined') {
+                    // Reset scroll for better feedback if needed
+                }
+
                 // Reset textareas if any
                 contactForm.querySelectorAll('textarea').forEach(textarea => {
                     textarea.style.height = 'auto';
                 });
             } else {
-                formStatus.innerText = '❌ ' + (result.error || 'Ошибка при отправке.');
-                formStatus.style.color = '#ff4444'; // Error red
+                console.error('Telegram API error:', results);
+                formStatus.innerText = '❌ Ошибка при отправке. Проверьте подключение.';
+                formStatus.style.color = '#ff4444';
             }
         } catch (error) {
-            console.error('Submission error:', error);
+            console.error('Network error:', error);
             formStatus.innerText = '❌ Ошибка сети. Попробуйте позже.';
             formStatus.style.color = '#ff4444';
         } finally {
