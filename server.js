@@ -17,7 +17,11 @@ app.use((req, res, next) => {
     next();
 });
 
-app.post('/api/contact', async (req, res) => {
+app.get('/form-handler', (req, res) => {
+    res.send('API is active and reachable');
+});
+
+app.post('/form-handler', async (req, res) => {
     const { name, email, message } = req.body;
     console.log('Received submission:', { name, email });
 
