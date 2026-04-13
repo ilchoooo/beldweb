@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт-визитка – beld.web</title>
+    <meta name="description" content="Заказать сайт-визитку для вашей компании. Премиальная разработка от beld.web">
+    <!-- Theme -->
+    <meta name="theme-color" content="#050505">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Outfit:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap"
+        rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+    <!-- Global 3D Background -->
+    <canvas id="bg-canvas" class="webgl-bg" data-page-type="service"></canvas>
+
+    <!-- Custom cursor -->
+    <div class="stable-cursor" aria-hidden="true"></div>
+
+    <!-- Header -->
+    <header class="site-header" style="position: relative; background: transparent; border-bottom: 1px solid var(--border-subtle);">
+        <a href="index.html" class="logo interactive">beld.web</a>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html" class="nav-link interactive magnetic">На главную</a></li>
+                <li><a href="index.html#services" class="nav-link interactive magnetic">Услуги</a></li>
+                <li><a href="index.html#contact" class="nav-link interactive magnetic">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Background SVG Circuit Lines (subtle) -->
+    <svg class="bg-circuit-lines" viewBox="0 0 100 100" preserveAspectRatio="none" style="opacity: 0.05;">
+        <path class="circuit-path path-1" d="M 15 0 V 40 H 85 V 100" />
+        <path class="circuit-path path-2" d="M 50 0 V 100" />
+    </svg>
+
+    <main style="padding-top: 100px; min-height: 80vh; max-width: 900px; margin: 0 auto; padding-bottom: 100px; padding-left: 5%; padding-right: 5%;">
+        <div style="margin-bottom: 2rem;">
+            <div style="font-family: var(--font-grotesk); color: var(--accent); font-size: 1rem; letter-spacing: 2px; margin-bottom: 1rem;">УСЛУГА 01</div>
+            <h1 class="section-title" style="margin-bottom: 1rem; font-size: clamp(2.5rem, 6vw, 4.5rem);">Сайт-визитка</h1>
+            <p style="font-family: var(--font-inter); font-size: 1.2rem; color: var(--text-muted); line-height: 1.6; max-width: 700px;">
+                Компактный сайт для презентации вашей компании или специалиста в интернете. Формирует доверие и закрывает основные возражения клиентов.
+            </p>
+            <div style="margin-top: 1.5rem; display: inline-block; padding: 0.5rem 1rem; border: 1px solid var(--accent); border-radius: 8px; color: var(--accent); font-family: var(--font-grotesk); font-size: 1.2rem; font-weight: 500;">
+                Цена: от 10 000 ₽
+            </div>
+        </div>
+        
+        <div style="color: var(--text-muted); line-height: 1.8; font-size: 1.1rem; display: flex; flex-direction: column; gap: 2rem; margin-top: 4rem;">
+            <div>
+                <h3 style="color: var(--text-light); font-family: var(--font-outfit); font-size: 1.8rem; margin-bottom: 1rem;">Для кого подходит?</h3>
+                <p>Сайт-визитка идеально подходит для малого бизнеса, частных специалистов, консультантов и компаний, которым нужно быстро заявить о себе в сети. Это ваш цифровой офис, доступный 24/7.</p>
+            </div>
+            
+            <div>
+                <h3 style="color: var(--text-light); font-family: var(--font-outfit); font-size: 1.8rem; margin-bottom: 1rem;">Что входит в разработку?</h3>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <li style="display: flex; gap: 1rem; align-items: flex-start;"><span style="color: var(--accent);">✦</span> <strong>Индивидуальный дизайн:</strong> Разработка премиального интерфейса под ваш бренд.</li>
+                    <li style="display: flex; gap: 1rem; align-items: flex-start;"><span style="color: var(--accent);">✦</span> <strong>Адаптивная верстка:</strong> Сайт будет идеально смотреться на смартфонах, планшетах и ПК.</li>
+                    <li style="display: flex; gap: 1rem; align-items: flex-start;"><span style="color: var(--accent);">✦</span> <strong>Базовая структура:</strong> О компании, Услуги, Портфолио/Отзывы, Контакты (только 1 страница).</li>
+                    <li style="display: flex; gap: 1rem; align-items: flex-start;"><span style="color: var(--accent);">✦</span> <strong>SEO-база:</strong> Настройка мета-тегов и фавикона для корректного отображения в поисковых системах.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 style="color: var(--text-light); font-family: var(--font-outfit); font-size: 1.8rem; margin-bottom: 1rem;">Сроки, этапы разработки и оплаты</h3>
+                <p>Классическая разработка занимает от 3 до 7 рабочих дней. Мы начинаем с брифинга и анализа ниши, затем готовим прототип, отрисовываем дизайн и программируем сайт. <br><br><strong>Этапы оплаты:</strong> 50% предоплата перед запуском работ, вторые 50% — после завершения программирования и тестирования (полная оплата до финальной передачи сайта).</p>
+            </div>
+
+            <div style="background: var(--bg-glass); padding: 3rem; border-radius: 16px; border: 1px solid var(--border-subtle); margin-top: 2rem; text-align: center;">
+                <h3 style="color: var(--text-light); font-family: var(--font-outfit); font-size: 2rem; margin-bottom: 1rem;">Готовы начать?</h3>
+                <p style="margin-bottom: 2rem;">Оставьте заявку, и мы обсудим детали вашего нового сайта-визитки.</p>
+                <a href="index.html#contact" class="btn-primary interactive magnetic" style="display: inline-block;">Обсудить проект</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-left">
+                <div class="footer-logo">beld.web</div>
+                <div class="footer-copy">© 2026 Все права защищены.</div>
+            </div>
+            <div class="footer-links">
+                <a href="mailto:hello@beld.web" class="interactive magnetic">hello@beld.web</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/script.js" defer></script>
+</body>
+
+</html>

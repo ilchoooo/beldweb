@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корпоративный сайт – beld.web</title>
+    <meta name="description" content="Разработка корпоративных сайтов. Премиум-класс от beld.web">
+    <meta name="theme-color" content="#050505">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Outfit:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+    <!-- Global 3D Background -->
+    <canvas id="bg-canvas" class="webgl-bg" data-page-type="service"></canvas>
+
+    <div class="stable-cursor" aria-hidden="true"></div>
+
+    <header class="site-header" style="position: relative; background: transparent; border-bottom: 1px solid var(--border-subtle);">
+        <a href="index.html" class="logo interactive">beld.web</a>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html" class="nav-link interactive magnetic">На главную</a></li>
+                <li><a href="index.html#services" class="nav-link interactive magnetic">Услуги</a></li>
+                <li><a href="index.html#contact" class="nav-link interactive magnetic">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <svg class="bg-circuit-lines" viewBox="0 0 100 100" preserveAspectRatio="none" style="opacity: 0.05;">
+        <path class="circuit-path path-1" d="M 15 0 V 40 H 85 V 100" />
+        <path class="circuit-path path-2" d="M 50 0 V 100" />
+    </svg>
+
+    <main style="padding-top: 100px; min-height: 80vh; max-width: 900px; margin: 0 auto; padding-bottom: 100px; padding-left: 5%; padding-right: 5%;">
+        <div style="margin-bottom: 2rem;">
+            <div style="font-family: var(--font-grotesk); color: var(--accent); font-size: 1rem; letter-spacing: 2px; margin-bottom: 1rem;">УСЛУГА 03</div>
+            <h1 class="section-title" style="margin-bottom: 1rem; font-size: clamp(2.5rem, 6vw, 4.5rem);">Корпоративный сайт</h1>
+            <p style="font-family: var(--font-inter); font-size: 1.2rem; color: var(--text-muted); line-height: 1.6; max-width: 700px;">
+                Многостраничное имиджевое решение, подчеркивающее статус бизнеса. Идеально для привлечения серьезных клиентов и партнёров.
+            </p>
+            <div style="margin-top: 1.5rem; display: inline-block; padding: 0.5rem 1rem; border: 1px solid var(--accent); border-radius: 8px; color: var(--accent); font-family: var(--font-grotesk); font-size: 1.2rem; font-weight: 500;">
+                Цена: от 70 000 ₽
+            </div>
+        </div>
+        
+        <div style="color: var(--text-muted); line-height: 1.8; font-size: 1.1rem; display: flex; flex-direction: column; gap: 2rem; margin-top: 4rem;">
+            <div>
+                <h3 style="color: var(--text-light); font-family: var(--font-outfit); font-size: 1.8rem; margin-bottom: 1rem;">Для кого подходит?</h3>
+                <p>Крупные компании, B2B-сегмент, застройщики, производственные предприятия и все те, кому нужно продемонстрировать масштаб, глубокую экспертизу и вызвать максимальное доверие корпоративных заказчиков.</p>
+            </div>
+            
+            <div>
+                <h3 style="color: var(--text-light); font-family: var(--font-outfit); font-size: 1.8rem; margin-bottom: 1rem;">Ключевые преимущества:</h3>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <li style="display: flex; gap: 1rem; align-items: flex-start;"><span style="color: var(--accent);">✦</span> <strong>Сложная структура:</strong> Разделы для инвесторов, медиа-центр, блог, вакансии, каталоги услуг и филиалов.</li>
+                    <li style="display: flex; gap: 1rem; align-items: flex-start;"><span style="color: var(--accent);">✦</span> <strong>Премиальная подача:</strong> Строгий, но современный дизайн, интерактивные презентации и 3D-модели продукции.</li>
+                    <li style="display: flex; gap: 1rem; align-items: flex-start;"><span style="color: var(--accent);">✦</span> <strong>Интеграции со сложными ERP/CRM:</strong> Автоматизация передачи данных о заявках прямо в вашу корпоративную систему.</li>
+                    <li style="display: flex; gap: 1rem; align-items: flex-start;"><span style="color: var(--accent);">✦</span> <strong>Безопасность и масштабируемость:</strong> Использование современных фреймворков (Next.js, Node.js) гарантирует надежную работу под высокими нагрузками.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 style="color: var(--text-light); font-family: var(--font-outfit); font-size: 1.8rem; margin-bottom: 1rem;">Сроки, этапы разработки и оплаты</h3>
+                <p>Масштабная разработка корпоративного сайта занимает от 3 до 6 недель. Процесс включает глубинный анализ бизнеса, проектирование архитектуры, разработку премиального дизайна, программирование сложного функционала и тщательное тестирование. <br><br><strong>Этапы оплаты:</strong> 50% предоплата перед запуском работ, вторые 50% — после завершения программирования и тестирования (полная оплата до финальной передачи сайта).</p>
+            </div>
+
+            <div style="background: var(--bg-glass); padding: 3rem; border-radius: 16px; border: 1px solid var(--border-subtle); margin-top: 2rem; text-align: center;">
+                <h3 style="color: var(--text-light); font-family: var(--font-outfit); font-size: 2rem; margin-bottom: 1rem;">Время масштабироваться</h3>
+                <p style="margin-bottom: 2rem;">Оставьте заявку, чтобы мы подготовили персональное предложение для вашей корпорации.</p>
+                <a href="index.html#contact" class="btn-primary interactive magnetic" style="display: inline-block;">Обсудить проект</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-left">
+                <div class="footer-logo">beld.web</div>
+                <div class="footer-copy">© 2026 Все права защищены.</div>
+            </div>
+            <div class="footer-links">
+                <a href="mailto:hello@beld.web" class="interactive magnetic">hello@beld.web</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js" defer></script>
+</body>
+</html>

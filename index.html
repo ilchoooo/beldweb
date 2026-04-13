@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>beld.web – Премиальные сайты для бизнеса</title>
+    <meta name="description"
+        content="Создаём цифровые экосистемы: премиальные сайты, сложные PWA, CRM и интернет-магазины. Самые современные веб-технологилоии для владельцев бизнеса. Гарантия качества 2026.">
+    <meta name="keywords"
+        content="создание сайтов, веб студия, разработка сайтов под ключ, премиальные сайты, веб-приложения, react, GSAP, three.js">
+    <!-- Open Graph & Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="beld.web – Премиальные сайты для бизнеса" />
+    <meta property="og:description"
+        content="Создаём цифровые экосистемы: премиальные сайты и веб‑приложения для владельцев бизнесов. Актуальные технологии." />
+    <!-- Theme -->
+    <meta name="theme-color" content="#050505">
+    <link rel="canonical" href="https://beld.web/">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Outfit:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap"
+        rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Spline Viewer для 3D сцены -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.94/build/spline-viewer.js"></script>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <svg class="preloader-svg" viewBox="0 0 800 200">
+            <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
+                class="svg-text-stroke">beld.web</text>
+        </svg>
+    </div>
+
+    <!-- Custom cursor -->
+    <div class="stable-cursor" aria-hidden="true"></div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <a href="#hero" class="logo interactive">beld.web</a>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#services" class="nav-link interactive magnetic">Услуги</a></li>
+                <li><a href="#portfolio" class="nav-link interactive magnetic">Портфолио</a></li>
+                <li><a href="#about" class="nav-link interactive magnetic">О нас</a></li>
+                <li><a href="#contact" class="nav-link interactive magnetic">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Global 3D Background -->
+    <canvas id="bg-canvas" class="webgl-bg"></canvas>
+
+    <!-- Background SVG Circuit Lines -->
+    <svg class="bg-circuit-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path class="circuit-path path-1" d="M 15 0 V 40 H 85 V 100" />
+        <path class="circuit-path path-2" d="M 50 0 V 100" />
+        <path class="circuit-path path-3" d="M 85 0 V 20 H 15 V 80 H 85" />
+    </svg>
+
+    <main>
+        <!-- Hero section -->
+        <section class="hero" id="hero">
+            <div class="threejs-container" style="z-index: 0; opacity: 0.5;">
+                <spline-viewer url="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"></spline-viewer>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-eyebrow">WEB DEVELOPMENT STUDIO</div>
+                <h1 class="scramble-text interactive" data-value="beld.web">beld.web</h1>
+                <div class="hero-description">
+                    Мы создаём премиальные сайты, которые подчёркивают статус Вашего бизнеса,
+                    обеспечивают 100% надежность и работают на увеличение прибыли.
+                </div>
+                <a href="#contact" class="btn-primary interactive magnetic">Обсудить проект</a>
+            </div>
+        </section>
+
+        <!-- Services section -->
+        <section class="services-section" id="services">
+            <div class="container services-container">
+                <div class="services-sticky-col">
+                    <h2 class="section-title interactive-heading">Что мы делаем</h2>
+                    <p class="services-desc">Каждый этап работы — искусство, подкрепленное точной инженерной логикой.
+                    </p>
+                    <div class="services-spline-wrapper" id="services-3d-wrapper">
+                        <!-- Сюда мы встроим надежную модель на чистом Three.js -->
+                    </div>
+                </div>
+                <div class="services-scroll-col">
+                    <a href="service-vizitka.html" class="service-card interactive magnetic-card">
+                        <div class="card-icon">01</div>
+                        <h3>Сайт-визитка</h3>
+                        <p>Компактный сайт для презентации вашей компании или специалиста в интернете. Формирует доверие
+                            и закрывает основные возражения клиентов.</p>
+                        <div class="card-more">Подробнее <span>➔</span></div>
+                    </a>
+                    <a href="service-landing.html" class="service-card interactive magnetic-card">
+                        <div class="card-icon">02</div>
+                        <h3>Лендинг (Landing Page)</h3>
+                        <p>Одностраничный сайт с высокой конверсией для продажи конкретного товара, запуска услуги или
+                            сбора контактов на мероприятие.</p>
+                        <div class="card-more">Подробнее <span>➔</span></div>
+                    </a>
+                    <a href="service-corporate.html" class="service-card interactive magnetic-card">
+                        <div class="card-icon">03</div>
+                        <h3>Корпоративный сайт</h3>
+                        <p>Многостраничное имиджевое решение, подчеркивающее статус бизнеса. Идеально для привлечения
+                            серьезных клиентов и партнёров.</p>
+                        <div class="card-more">Подробнее <span>➔</span></div>
+                    </a>
+                    <a href="service-ecommerce.html" class="service-card interactive magnetic-card">
+                        <div class="card-icon">04</div>
+                        <h3>Интернет-магазин</h3>
+                        <p>Современная торговая платформа с каталогом, онлайн-оплатой и интеграцией с CRM для
+                            эффективных продаж.</p>
+                        <div class="card-more">Подробнее <span>➔</span></div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech stack marquee (Fixed to not overlap) -->
+        <section class="stack-section">
+            <div class="marquee-wrapper">
+                <div class="marquee-text">
+                    REACT <span class="bullet">✦</span>
+                    THREE.JS <span class="bullet">✦</span>
+                    NODE.JS <span class="bullet">✦</span>
+                    GSAP <span class="bullet">✦</span>
+                    NEXT.JS <span class="bullet">✦</span>
+                    TYPESCRIPT <span class="bullet">✦</span>
+                </div>
+                <div class="marquee-text">
+                    REACT <span class="bullet">✦</span>
+                    THREE.JS <span class="bullet">✦</span>
+                    NODE.JS <span class="bullet">✦</span>
+                    GSAP <span class="bullet">✦</span>
+                    NEXT.JS <span class="bullet">✦</span>
+                    TYPESCRIPT <span class="bullet">✦</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio section -->
+        <section class="portfolio-section" id="portfolio">
+            <div class="container">
+                <h2 class="section-title interactive-heading">Примеры работ</h2>
+                <div id="portfolio-donut-container"></div>
+                <div class="portfolio-list">
+                    <div class="project-row interactive">
+                        <div class="project-info">
+                            <div class="project-title">Sovereign Legal</div>
+                            <div class="project-category">Сайт для юристов</div>
+                        </div>
+                        <div class="project-image-wrapper" data-lenis-prevent>
+                            <img src="images/sovereign legal.png" alt="Sovereign Legal">
+                        </div>
+                    </div>
+                    <div class="project-row interactive">
+                        <div class="project-info">
+                            <div class="project-title">Smeegs</div>
+                            <div class="project-category">Интерьер и мебель</div>
+                        </div>
+                        <div class="project-image-wrapper" data-lenis-prevent>
+                            <img src="images/smeegs.png" alt="Smeegs Interior & Furniture">
+                        </div>
+                    </div>
+                    <div class="project-row interactive">
+                        <div class="project-info">
+                            <div class="project-title">HEAVY_LOGIC_SYS</div>
+                            <div class="project-category">Промышленное производство</div>
+                        </div>
+                        <div class="project-image-wrapper" data-lenis-prevent>
+                            <img src="images/HEAVY_LOGIC_SYS.png" alt="HEAVY_LOGIC_SYS">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About section -->
+        <section class="about-section" id="about">
+            <div class="container">
+                <h2 class="section-title interactive-heading">О компании</h2>
+                <div class="about-content">
+                    <p class="about-text">
+                        beld.web специализируется на создании премиальных веб-решений для бизнеса. Мы знаем, что для
+                        вас важна надежность, понятный процесс и измеримый результат. Наша команда использует самые
+                        современные технологии 2026 года, чтобы ваш сайт не только выглядел уникально, но и приносил
+                        реальную прибыль, оставаясь удобным в управлении.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact section -->
+        <section class="contact-section" id="contact">
+            <div class="container contact-container">
+                <div class="contact-info">
+                    <h2 class="section-title">Готовы обсудить<br>ваш проект?</h2>
+                    <p class="contact-sub">Оставьте заявку, и мы свяжемся<br>с вами для бесплатной консультации.</p>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Имя</label>
+                            <input type="text" id="name" name="name" required placeholder="Ваше имя">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Почта или телефон</label>
+                            <input type="text" id="email" name="email" required placeholder="Контакт для связи">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Опишите задачу</label>
+                            <textarea id="message" name="message" rows="3" placeholder="Что нужно сделать?"></textarea>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label class="custom-checkbox">
+                                <input type="checkbox" name="consent" required id="consent-check">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-text">Я даю согласие на <a href="policy.html" class="interactive" target="_blank">обработку персональных данных</a></span>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn-primary form-submit interactive magnetic">Отправить</button>
+                        <div id="form-status"
+                            style="margin-top: 1.5rem; font-family: var(--font-inter); font-size: 0.9rem;"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-left">
+                <div class="footer-logo">beld.web</div>
+                <div class="footer-copy">© 2026 Все права защищены. Работаем по всему миру.</div>
+                <a href="privacy.html" class="footer-privacy interactive magnetic">Политика конфиденциальности</a>
+            </div>
+            <div class="footer-links">
+                <a href="https://t.me/qwempire" class="interactive magnetic" target="_blank">Telegram</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent -->
+    <div class="cookie-banner" id="cookie-banner" aria-hidden="true" style="display: none;">
+        <div class="cookie-content">
+            <h3 class="cookie-title">Ваши данные под защитой</h3>
+            <p class="cookie-text">Мы используем файлы Cookie для анализа и улучшения работы сайта. Подробнее в <a
+                    href="privacy.html" class="interactive">Политике конфиденциальности</a>.</p>
+            <div class="cookie-actions">
+                <label class="cookie-checkbox">
+                    <input type="checkbox" id="cookie-agree" checked>
+                    <span class="checkmark"></span>
+                    Я согласен
+                </label>
+                <button id="cookie-accept" class="btn-primary cookie-btn interactive magnetic">Принять</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main script -->
+    <script src="js/script.js" defer></script>
+</body>
+
+</html>

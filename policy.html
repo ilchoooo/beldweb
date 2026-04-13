@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика обработки персональных данных – beld.web</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Outfit:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .policy-container {
+            padding: 8rem 5%;
+            max-width: 900px;
+            margin: 0 auto;
+            min-height: 70vh;
+        }
+        .policy-content {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .policy-content h2 {
+            color: var(--text-light);
+            font-family: var(--font-outfit);
+            font-size: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .policy-content h3 {
+            color: var(--text-light);
+            font-family: var(--font-outfit);
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+        .policy-content p {
+            margin-bottom: 0.5rem;
+        }
+        .policy-content ul {
+            padding-left: 1.5rem;
+            list-style-type: square;
+        }
+        .policy-content li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Custom cursor -->
+    <div class="stable-cursor" aria-hidden="true"></div>
+
+    <!-- Header -->
+    <header class="site-header" style="position: relative; background: transparent; border-bottom: 1px solid var(--border-subtle);">
+        <a href="index.html" class="logo interactive">beld.web</a>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html" class="nav-link interactive magnetic">На главную</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="policy-container">
+        <h1 class="section-title">Согласие на обработку персональных данных</h1>
+        
+        <div class="policy-content">
+            <p>Предоставляя свои персональные данные в формах обратной связи на сайте beld.web, пользователь свободно, своей волей и в своем интересе дает полное и безоговорочное согласие на их обработку.</p>
+            
+            <h3>1. Какую информацию мы собираем</h3>
+            <ul>
+                <li>Имя или никнейм.</li>
+                <li>Контактные данные (E-mail, номер телефона, ссылка на мессенджер).</li>
+                <li>Текст сообщения или описания задачи.</li>
+                <li>Технические данные (IP-адрес, данные файлов cookie, информация о браузере).</li>
+            </ul>
+
+            <h3>2. Цели обработки</h3>
+            <p>Мы обрабатываем полученные данные исключительно для:</p>
+            <ul>
+                <li>Оказания консультационных услуг и обсуждения будущих проектов.</li>
+                <li>Связи с пользователем по его запросу.</li>
+                <li>Аналитики посещаемости и улучшения работы сайта.</li>
+            </ul>
+
+            <h3>3. Как мы храним данные</h3>
+            <p>Ваши данные передаются напрямую ответственным сотрудникам через зашифрованные каналы связи (Telegram) и не хранятся в открытых базах данных сайта. Мы принимаем все необходимые организационные и технические меры для защиты персональной информации от неправомерного доступа.</p>
+
+            <h3>4. Сроки и отзыв согласия</h3>
+            <p>Настоящее согласие действует бессрочно с момента предоставления данных. Пользователь имеет право отозвать свое согласие в любое время, направив письменное уведомление на электронную почту: <a href="mailto:hello@beld.web" style="color: var(--accent); text-decoration: none;">hello@beld.web</a>.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-left">
+                <div class="footer-logo">beld.web</div>
+                <div class="footer-copy">© 2026 Все права защищены. Работаем по всему миру.</div>
+            </div>
+            <div class="footer-links">
+                <a href="mailto:hello@beld.web" class="interactive magnetic">hello@beld.web</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Minimal Script for Cursor (Consistent with other subpages) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        const cursor = document.querySelector('.stable-cursor');
+        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        gsap.ticker.add(() => {
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            if (cursor) {
+                cursor.style.left = cursorX + 'px';
+                cursor.style.top = cursorY + 'px';
+            }
+        });
+
+        document.querySelectorAll('.interactive').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+    </script>
+</body>
+</html>
