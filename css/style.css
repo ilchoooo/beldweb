@@ -791,8 +791,33 @@ section {
     .contact-container {
         grid-template-columns: 1fr;
     }
+    .stable-cursor {
+        display: none !important;
+    }
+    * {
+        cursor: auto !important;
+    }
+    .project-row {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem 0;
+    }
+    .project-info {
+        margin-bottom: 1.5rem;
+    }
+    .project-row:hover .project-info {
+        transform: none;
+    }
     .project-image-wrapper {
-        display: none; /* Hide hover images on tablet/mobile for simpler view */
+        position: relative;
+        right: auto;
+        width: 100%;
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+        display: block;
+        max-width: 100%;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 }
 @media (max-width: 768px) {

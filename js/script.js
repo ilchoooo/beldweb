@@ -3,41 +3,43 @@ const lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
 });
-function raf(time) { 
-    lenis.raf(time); 
-    requestAnimationFrame(raf); 
+function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
 }
 requestAnimationFrame(raf);
 
 // 2. Trailing Cursor with GSAP
 const cursor = document.querySelector('.stable-cursor');
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
-let cursorX = window.innerWidth / 2;
-let cursorY = window.innerHeight / 2;
+const isMobile = window.innerWidth <= 992;
 
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
+if (cursor && !isMobile) {
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let cursorX = window.innerWidth / 2;
+    let cursorY = window.innerHeight / 2;
 
-gsap.ticker.add(() => {
-    // Smooth trailing effect
-    cursorX += (mouseX - cursorX) * 0.15;
-    cursorY += (mouseY - cursorY) * 0.15;
-    if (cursor) {
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    gsap.ticker.add(() => {
+        // Smooth trailing effect
+        cursorX += (mouseX - cursorX) * 0.15;
+        cursorY += (mouseY - cursorY) * 0.15;
         cursor.style.left = cursorX + 'px';
         cursor.style.top = cursorY + 'px';
-    }
-});
+    });
 
-document.querySelectorAll('.interactive').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor?.classList.add('hovered'));
-    el.addEventListener('mouseleave', () => cursor?.classList.remove('hovered'));
-});
+    document.querySelectorAll('.interactive').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+    });
+}
 
 // 3. Эффект Глитча (Scramble) для заголовка
-const letters = "abcdefghijklmnopqrstuvwxyz0123456789!<>-_\\/[]{}—=+*^?#_"; 
+const letters = "abcdefghijklmnopqrstuvwxyz0123456789!<>-_\\/[]{}—=+*^?#_";
 document.querySelectorAll('.scramble-text').forEach(elem => {
     const originalText = elem.dataset.value || elem.innerText;
     elem.dataset.value = originalText;
@@ -53,16 +55,16 @@ document.querySelectorAll('.scramble-text').forEach(elem => {
                     }
                     return letters[Math.floor(Math.random() * letters.length)];
                 }).join("");
-            
+
             if (iterations >= originalText.length) {
                 clearInterval(elem.scrambleInterval);
             }
             iterations += 1 / 3; // Плавное раскрытие по буквам
-        }, 30); 
+        }, 30);
     });
     elem.addEventListener('mouseleave', () => {
-        clearInterval(elem.scrambleInterval); 
-        elem.innerText = originalText; 
+        clearInterval(elem.scrambleInterval);
+        elem.innerText = originalText;
     });
 });
 
@@ -82,7 +84,7 @@ if (spline) {
 // 5. Авто-растягивание полей ввода (textarea)
 document.querySelectorAll('textarea').forEach(textarea => {
     // Устанавливаем высоту при вводе
-    textarea.addEventListener('input', function() {
+    textarea.addEventListener('input', function () {
         this.style.height = 'auto';
         this.style.height = this.scrollHeight + 'px';
     });
@@ -95,7 +97,7 @@ const initWebGLBackground = () => {
 
     // Сцена
     const scene = new THREE.Scene();
-    
+
     // Камера
     const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
     camera.position.z = 10;
@@ -106,7 +108,7 @@ const initWebGLBackground = () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     // Объекты
-    const material = new THREE.MeshBasicMaterial({ 
+    const material = new THREE.MeshBasicMaterial({
         color: 0xff4500, // accent color (orange)
         wireframe: true,
         transparent: true,
@@ -152,7 +154,7 @@ const initWebGLBackground = () => {
 
     // Обработка скролла (Параллакс камеры)
     let scrollY = window.scrollY;
-    
+
     // Анимация
     const clock = new THREE.Clock();
 
@@ -214,8 +216,8 @@ const initServices3D = () => {
     const initialPositions = new Float32Array(particleCount * 3); // Сохраняем базу
 
     const color = new THREE.Color();
-    const accentColor = new THREE.Color(0xff4500); 
-    const secondaryColor = new THREE.Color(0x888888); 
+    const accentColor = new THREE.Color(0xff4500);
+    const secondaryColor = new THREE.Color(0x888888);
 
     for (let i = 0; i < particleCount; i++) {
         const radius = 3; // Радиус сферы
@@ -223,7 +225,7 @@ const initServices3D = () => {
         const v = Math.random();
         const theta = 2 * Math.PI * u;
         const phi = Math.acos(2 * v - 1);
-        
+
         const r = Math.cbrt(Math.random()) * radius;
 
         const px = r * Math.sin(phi) * Math.cos(theta);
@@ -243,7 +245,7 @@ const initServices3D = () => {
         } else {
             color.copy(secondaryColor);
         }
-        
+
         colors[i * 3] = color.r;
         colors[i * 3 + 1] = color.g;
         colors[i * 3 + 2] = color.b;
@@ -285,17 +287,17 @@ const initServices3D = () => {
 
     const animate = () => {
         requestAnimationFrame(animate);
-        
+
         // Вращаем саму сферу медленно
         particles.rotation.y += 0.0015;
         particles.rotation.x += 0.001;
-        
+
         // Интерактивное вращение всей оси в зависимости от мыши (вместо сдвига камеры)
         targetX = mouseX * 0.5;
         targetY = mouseY * 0.5;
         pivot.rotation.x += (targetY - pivot.rotation.x) * 0.05;
         pivot.rotation.y += (targetX - pivot.rotation.y) * 0.05;
-        
+
         // Волнообразное движение частиц (пульсация) вокруг их базовых точек
         const time = Date.now() * 0.0015;
         const positionAttribute = geometry.attributes.position;
@@ -303,7 +305,7 @@ const initServices3D = () => {
             const ix = initialPositions[i * 3];
             const iy = initialPositions[i * 3 + 1];
             const iz = initialPositions[i * 3 + 2];
-            
+
             positionAttribute.setXYZ(
                 i,
                 ix + Math.sin(time + iy) * 0.1,
@@ -359,7 +361,7 @@ const initPortfolioDonut = () => {
         metalness: 0.9,
         flatShading: true
     });
-    
+
     const donut = new THREE.Mesh(geometry, material);
     scene.add(donut);
 
@@ -381,19 +383,19 @@ const initPortfolioDonut = () => {
 
     const animate = () => {
         requestAnimationFrame(animate);
-        
+
         const time = Date.now() * 0.001;
-        
+
         donut.rotation.x += 0.005;
         donut.rotation.y += 0.008;
-        
+
         // Mouse reaction
         donut.position.x += (mouseX * 2 - donut.position.x) * 0.05;
         donut.position.y += (-mouseY * 2 - donut.position.y) * 0.05;
-        
+
         // Subtle floating
         donut.position.y += Math.sin(time) * 0.002;
-        
+
         // Emissive pulse
         material.emissiveIntensity = 0.2 + Math.sin(time * 2) * 0.1;
 
@@ -441,8 +443,8 @@ if (preloaderSvgText && !preloaderShown) {
     // Отмечаем, что прелоадер показан
     sessionStorage.setItem('preloaderShown', 'true');
 
-    gsap.set('.hero-eyebrow, .hero-content h1, .hero-description, .hero-content .btn-primary, .site-header', { 
-        y: 30, opacity: 0 
+    gsap.set('.hero-eyebrow, .hero-content h1, .hero-description, .hero-content .btn-primary, .site-header', {
+        y: 30, opacity: 0
     });
 
     gsap.to(preloaderSvgText, {
@@ -451,7 +453,7 @@ if (preloaderSvgText && !preloaderShown) {
         ease: "power2.inOut",
         onComplete: () => {
             gsap.to(preloaderSvgText, { fill: "white", duration: 0.3 });
-            
+
             // Убираем прелоадер
             gsap.to('.preloader', {
                 yPercent: -100,
@@ -459,7 +461,7 @@ if (preloaderSvgText && !preloaderShown) {
                 delay: 0.2,
                 ease: "expo.inOut"
             });
-            
+
             // Входная анимация
             gsap.to('.site-header', { y: 0, opacity: 1, duration: 0.8, delay: 0.5, ease: "power3.out" });
             gsap.to('.hero-eyebrow, .hero-content h1, .hero-description, .hero-content .btn-primary', {
@@ -478,7 +480,7 @@ if (preloaderSvgText && !preloaderShown) {
     if (preloaderEl) {
         preloaderEl.style.display = 'none';
     }
-    
+
     // Легкая анимация появления без задержки прелоадера
     gsap.from('.site-header', { y: 15, opacity: 0, duration: 0.6, ease: "power2.out" });
     gsap.from('.hero-eyebrow, .hero-content h1, .hero-description, .hero-content .btn-primary', {
@@ -492,22 +494,22 @@ if (preloaderSvgText && !preloaderShown) {
 
 // Magnetic Buttons
 document.querySelectorAll('.magnetic').forEach(btn => {
-    btn.addEventListener('mousemove', function(e) {
+    btn.addEventListener('mousemove', function (e) {
         const rect = this.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
 
         gsap.to(this, {
-            x: x * 0.3, 
+            x: x * 0.3,
             y: y * 0.3,
             duration: 0.4,
             ease: "power2.out"
         });
     });
 
-    btn.addEventListener('mouseleave', function() {
+    btn.addEventListener('mouseleave', function () {
         gsap.to(this, {
-            x: 0, 
+            x: 0,
             y: 0,
             duration: 0.7,
             ease: "elastic.out(1, 0.3)"
@@ -523,25 +525,25 @@ mm.add({
     isMobile: "(max-width: 768px)"
 }, (context) => {
     let { isDesktop } = context.conditions;
-    
+
     const applyCylindricalScroll = (elements) => {
         gsap.utils.toArray(elements).forEach(el => {
             // Анимация ВХОДА (увеличение по мере приближения к центру)
-            gsap.fromTo(el, 
+            gsap.fromTo(el,
                 { scale: isDesktop ? 0.75 : 0.95, opacity: isDesktop ? 0.3 : 0.5, transformOrigin: "center center" },
-                { 
-                    scale: 1, 
-                    opacity: 1, 
+                {
+                    scale: 1,
+                    opacity: 1,
                     ease: "none",
                     scrollTrigger: {
                         trigger: el,
-                        start: "top 95%",   
-                        end: "center center",  
+                        start: "top 95%",
+                        end: "center center",
                         scrub: 0.5
                     }
                 }
             );
-            
+
             // Анимация ВЫХОДА (уменьшение по мере удаления от центра)
             gsap.fromTo(el,
                 { scale: 1, opacity: 1 },
@@ -551,8 +553,8 @@ mm.add({
                     ease: "none",
                     scrollTrigger: {
                         trigger: el,
-                        start: "center center", 
-                        end: "bottom 5%",      
+                        start: "center center",
+                        end: "bottom 5%",
                         scrub: 0.5
                     }
                 }
@@ -562,7 +564,7 @@ mm.add({
 
     applyCylindricalScroll('.service-card, .project-row, .about-text');
 
-    return () => {}; 
+    return () => { };
 });
 
 // Portfolio Image Parallax (Отключено для удобного скролла превью)
@@ -591,7 +593,7 @@ document.querySelectorAll('.interactive-heading').forEach(heading => {
 document.querySelectorAll('.circuit-path').forEach(path => {
     const length = path.getTotalLength();
     gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
-    
+
     gsap.to(path, {
         strokeDashoffset: 0,
         scrollTrigger: {
@@ -635,7 +637,7 @@ document.querySelectorAll('.project-image-wrapper').forEach(wrapper => {
     wrapper.addEventListener('wheel', (e) => {
         const atTop = wrapper.scrollTop <= 0;
         const atBottom = Math.abs(wrapper.scrollHeight - wrapper.scrollTop - wrapper.clientHeight) <= 2;
-        
+
         if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
             // Временно отключаем взаимодействие с окном, чтобы колесико "провалилось" на основной сайт
             wrapper.style.pointerEvents = 'none';
@@ -646,77 +648,76 @@ document.querySelectorAll('.project-image-wrapper').forEach(wrapper => {
     });
 });
 
-// 12. Contact Form Submission (Direct to Telegram API - Purely Static)
+// 12. Supabase Integration
+const supabaseUrl = 'https://daubnldtzmysdbyxejag.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhdWJubGR0em15c2RieXhlamFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyOTE2NTcsImV4cCI6MjA5MTg2NzY1N30.WGGnyWfOORwXRL8StHKVYVjFICeuOjdvKQB2xtzmS0s';
+const _supabase = window.supabase ? window.supabase.createClient(supabaseUrl, supabaseKey) : null;
+
 const contactForm = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
 
-// ⚠️ WARNING: Hardcoding tokens in frontend is insecure but required for static hosting
-const TELEGRAM_BOT_TOKEN = '8675223848:AAF4XnU1lrQ_1Xi3WfVfqA4maCtPvksg3M4';
-const TELEGRAM_CHAT_IDS = ['861139664', '738163931'];
-
-if (contactForm && formStatus) {
+if (contactForm && _supabase) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+        const submitBtn = contactForm.querySelector('.form-submit');
         const originalBtnText = submitBtn.innerText;
-        
+
         // Show loading state
-        submitBtn.disabled = true;
         submitBtn.innerText = 'Отправка...';
+        submitBtn.disabled = true;
         formStatus.innerText = '';
         formStatus.style.color = 'var(--text-muted)';
-        
-        const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData.entries());
-        
-        const text = `🚀 Новая заявка с сайта beld.web!\n\n` +
-                     `Имя: ${data.name}\n` +
-                     `Контакты: ${data.email}\n` +
-                     `Сообщение: ${data.message || 'Без сообщения'}`;
-        
-        try {
-            // Send to multiple recipients directly from browser
-            const sendPromises = TELEGRAM_CHAT_IDS.map(chatId => 
-                fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        chat_id: chatId,
-                        text: text,
-                        parse_mode: 'HTML'
-                    })
-                }).then(res => res.json())
-            );
-            
-            const results = await Promise.all(sendPromises);
-            const allOk = results.every(res => res.ok);
-            
-            if (allOk) {
-                formStatus.innerText = '✨ Спасибо! Ваша заявка успешно отправлена.';
-                formStatus.style.color = '#00ffaa'; // Success green
-                contactForm.reset();
-                
-                if (typeof lenis !== 'undefined') {
-                    // Reset scroll for better feedback if needed
-                }
 
-                // Reset textareas if any
-                contactForm.querySelectorAll('textarea').forEach(textarea => {
-                    textarea.style.height = 'auto';
-                });
-            } else {
-                console.error('Telegram API error:', results);
-                formStatus.innerText = '❌ Ошибка при отправке. Проверьте подключение.';
-                formStatus.style.color = '#ff4444';
+        const formData = new FormData(contactForm);
+        const data = {
+            name: formData.get('name'),
+            contact_info: formData.get('email'), // This field is "Почта или телефон" in the form
+            task_description: formData.get('message'), // This field is "Опишите задачу" in the form
+            created_at: new Date().toISOString()
+        };
+
+        try {
+            const { data: result, error } = await _supabase
+                .from('beldweb')
+                .insert([data]);
+
+            if (error) {
+                console.error('Supabase insertion error:', error);
+                throw error;
             }
+
+            console.log('Supabase insertion success:', result);
+
+            // Success
+            formStatus.innerText = 'Спасибо! Ваша заявка успешно отправлена.';
+            formStatus.style.color = '#4CAF50';
+            contactForm.reset();
+
+            // Auto-reset height for textarea after reset
+            contactForm.querySelectorAll('textarea').forEach(textarea => {
+                textarea.style.height = 'auto';
+            });
+
         } catch (error) {
-            console.error('Network error:', error);
-            formStatus.innerText = '❌ Ошибка сети. Попробуйте позже.';
-            formStatus.style.color = '#ff4444';
+            console.error('Detailed error:', error);
+            // More specific error message if possible
+            let errorMsg = 'Произошла ошибка при отправке. Пожалуйста, попробуйте позже.';
+            if (error && error.message) {
+                if (error.message.includes('permission denied')) {
+                    errorMsg = 'Ошибка: Доступ запрещен (проверьте RLS политики в Supabase).';
+                } else if (error.message.includes('column')) {
+                    errorMsg = 'Ошибка: Несоответствие полей таблицы (проверьте имена колонок).';
+                } else {
+                    errorMsg = `Ошибка: ${error.message}`;
+                }
+            }
+            formStatus.innerText = errorMsg;
+            formStatus.style.color = '#FF5252';
         } finally {
-            submitBtn.disabled = false;
             submitBtn.innerText = originalBtnText;
+            submitBtn.disabled = false;
         }
     });
 }
+

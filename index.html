@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <title>beld.web – Премиальные сайты для бизнеса</title>
     <meta name="description"
         content="Создаём цифровые экосистемы: премиальные сайты, сложные PWA, CRM и интернет-магазины. Самые современные веб-технологилоии для владельцев бизнеса. Гарантия качества 2026.">
@@ -32,6 +33,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <!-- Spline Viewer для 3D сцены -->
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.94/build/spline-viewer.js"></script>
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -230,7 +233,8 @@
                             <label class="custom-checkbox">
                                 <input type="checkbox" name="consent" required id="consent-check">
                                 <span class="checkmark"></span>
-                                <span class="checkbox-text">Я даю согласие на <a href="policy.html" class="interactive" target="_blank">обработку персональных данных</a></span>
+                                <span class="checkbox-text">Я даю согласие на <a href="policy.html" class="interactive"
+                                        target="_blank">обработку персональных данных</a></span>
                             </label>
                         </div>
                         <button type="submit" class="btn-primary form-submit interactive magnetic">Отправить</button>
